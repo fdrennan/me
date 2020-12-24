@@ -4,7 +4,6 @@ prerequisites
 intro
 about-me
 rust
-another-great-language
 applications
 example-one
 example-two
