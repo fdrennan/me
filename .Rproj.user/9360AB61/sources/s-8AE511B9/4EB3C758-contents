@@ -1,0 +1,11 @@
+# Rust
+
+
+```
+fn main () 
+{
+  println!("Yo, this is cool.");
+}
+```
+
+
