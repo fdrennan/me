@@ -37,8 +37,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={A Minimal Book Example},
-  pdfauthor={Yihui Xie},
+  pdftitle={ndexr},
+  pdfauthor={Freddy R. Drennan},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -116,9 +116,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{A Minimal Book Example}
-\author{Yihui Xie}
-\date{2020-12-24}
+\title{ndexr}
+\author{Freddy R. Drennan}
+\date{2020-12-26}
 
 \begin{document}
 \maketitle
@@ -127,94 +127,314 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
+\hypertarget{about-me}{%
+\chapter{About Me}\label{about-me}}
 
-You probably know me from somewhere.
+You probably know me from somewhere. My name is Freddy Drennan and I have been in and out of data related projects for the past five years. I initially fell in love with the \texttt{R} programming language and best practices in programming development - unit testing, well documented code, quality over quantity type stuff.
+
+I have wanted to break out of my programming rut for a while. Having devoured R, I want a bigger challenge. I'll be blogging about C, C++, and Rust in the coming weeks - taking notes about what I have learned as well and track my own growth.
+
+Thanks for checking this out!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Hey, yalls.\textquotesingle{}}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Hey, yalls, thanks again!\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Hey, yalls."
+## [1] "Hey, yalls, thanks again!"
 \end{verbatim}
 
-\hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\hypertarget{c}{%
+\chapter{C}\label{c}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
-
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\hypertarget{basic-calculator}{%
+\section{Basic Calculator}\label{basic-calculator}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main() \{}
+    \CommentTok{/*print Fahrenheit{-}Celsius table for f=0, 20, ..., 300*/}
+    \DataTypeTok{int}\NormalTok{ lower, upper, step;}
+    \DataTypeTok{float}\NormalTok{ fahr, celsius;}
+
+\NormalTok{    lower = }\DecValTok{0}\NormalTok{;}
+\NormalTok{    upper = }\DecValTok{300}\NormalTok{;}
+\NormalTok{    step = }\DecValTok{20}\NormalTok{;}
+
+\NormalTok{    fahr = lower;}
+    \ControlFlowTok{while}\NormalTok{ (fahr \textless{}= upper) \{}
+\NormalTok{        celsius = (}\FloatTok{5.0}\NormalTok{/}\FloatTok{9.0}\NormalTok{) * (fahr{-}}\FloatTok{32.0}\NormalTok{);}
+\NormalTok{        printf(}\StringTok{"\%4.0f \%6.1f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, fahr, celsius);}
+\NormalTok{        fahr = fahr + step;}
+\NormalTok{    \}}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f81d845528.c -o c6f3f81d845528.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f81d845528.so c6f3f81d845528.o -L/usr/lib/R/lib -lR
+\end{verbatim}
 
-{\centering \includegraphics[width=0.8\linewidth]{me_files/figure-latex/nice-fig-1} 
+\hypertarget{receiving-input}{%
+\section{Receiving Input}\label{receiving-input}}
 
+\begin{itemize}
+\tightlist
+\item
+  \texttt{printf}: Print to console
+\item
+  \texttt{getchar}: Get a string input from the console
+\item
+  \texttt{putchar}: Print a single character to the screen.
+\end{itemize}
+
+The program below will stop and print 'Enter something\ldots` and then received a string from the user. The while loop iterates over each letter in the input.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main()}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ c;}
+
+\NormalTok{    printf(}\StringTok{"Enter something, or ctrl{-}D to quit.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    c = getchar();}
+    \ControlFlowTok{while}\NormalTok{ (c != EOF) \{}
+\NormalTok{        printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        putchar(c);}
+\NormalTok{        c = getchar();}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f8339b02f9.c -o c6f3f8339b02f9.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f8339b02f9.so c6f3f8339b02f9.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+Simpler version of the above, showing that we can use assignment within a loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main()}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ c;}
+    
+    \ControlFlowTok{while}\NormalTok{ ((c = getchar()) != EOF) }
+\NormalTok{        putchar(c);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f85fba0b4a.c -o c6f3f85fba0b4a.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f85fba0b4a.so c6f3f85fba0b4a.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+\begin{verbatim}
+## For Loop
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int fahr;
+
+    for (fahr = 0; fahr <= 300; fahr = fahr + 20)
+        printf("%3d %6.1f\n", fahr, (5.0/9.0)*(fahr-32));
 }
+\end{verbatim}
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f84844925a.c -o c6f3f84844925a.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f84844925a.so c6f3f84844925a.o -L/usr/lib/R/lib -lR
+\end{verbatim}
 
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+\hypertarget{define}{%
+\section{DEFINE}\label{define}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\PreprocessorTok{\#define LOWER 0}
+\PreprocessorTok{\#define UPPER 300}
+\PreprocessorTok{\#define STEP 20}
+
+\DataTypeTok{int}\NormalTok{ main()}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ fahr;}
+
+    \ControlFlowTok{for}\NormalTok{ (fahr = LOWER; fahr \textless{}= UPPER; fahr = fahr + STEP)}
+\NormalTok{        printf(}\StringTok{"\%3d \%6.1f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, fahr, (}\FloatTok{5.0}\NormalTok{/}\FloatTok{9.0}\NormalTok{)*(fahr{-}}\DecValTok{32}\NormalTok{));}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f8287ee5cd.c -o c6f3f8287ee5cd.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f8287ee5cd.so c6f3f8287ee5cd.o -L/usr/lib/R/lib -lR
+\end{verbatim}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+\hypertarget{precedence-of-operators}{%
+\section{Precedence of Operators}\label{precedence-of-operators}}
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\texttt{c\ =\ getchar()\ !=\ EOF} is equal to \texttt{c\ =\ (getchar()\ !=\ EOF)}
 
-\hypertarget{about-me}{%
-\chapter{About Me}\label{about-me}}
+\hypertarget{charcter-count}{%
+\section{Charcter Count}\label{charcter-count}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main()}
+\NormalTok{\{}
+    \DataTypeTok{long}\NormalTok{ nc = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{while}\NormalTok{ (getchar() != EOF)}
+\NormalTok{    \{}
+\NormalTok{        nc = nc + }\DecValTok{1}\NormalTok{;}
+\NormalTok{        printf(}\StringTok{"There are \%ld characters}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, nc);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f8752e159f.c -o c6f3f8752e159f.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f8752e159f.so c6f3f8752e159f.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+\hypertarget{line-counting}{%
+\section{Line Counting}\label{line-counting}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main()}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ c, n1;}
+
+\NormalTok{    n1 = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{while}\NormalTok{((c = getchar()) != EOF)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (c == }\CharTok{\textquotesingle{}\textbackslash{}n\textquotesingle{}}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            printf(}\StringTok{"\%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, n1);}
+\NormalTok{            ++n1;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f81915ce76.c -o c6f3f81915ce76.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f81915ce76.so c6f3f81915ce76.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+\hypertarget{modern-c-example}{%
+\section{Modern C Example}\label{modern-c-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{void}\NormalTok{) \{}
+    \DataTypeTok{double}\NormalTok{ A[}\DecValTok{5}\NormalTok{] = \{}
+\NormalTok{            [}\DecValTok{0}\NormalTok{] = }\FloatTok{9.0}\NormalTok{,}
+\NormalTok{            [}\DecValTok{1}\NormalTok{] = }\FloatTok{2.9}\NormalTok{,}
+\NormalTok{            [}\DecValTok{4}\NormalTok{] = }\FloatTok{3.E+25}\NormalTok{,}
+\NormalTok{            [}\DecValTok{3}\NormalTok{] = }\FloatTok{0.00007}
+\NormalTok{    \};}
+
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{size\_t}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} }\DecValTok{5}\NormalTok{; ++i) \{}
+\NormalTok{        printf(}\StringTok{"element \%zu is \%g, }\SpecialCharTok{\textbackslash{}t}\StringTok{its square is \%g}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+\NormalTok{               i,}
+\NormalTok{               A[i],}
+\NormalTok{               A[i]*A[i]);}
+\NormalTok{    \}}
+
+    \ControlFlowTok{return}\NormalTok{ EXIT\_SUCCESS;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f8600c78b6.c -o c6f3f8600c78b6.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f8600c78b6.so c6f3f8600c78b6.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+\hypertarget{parsing-a-csv-file}{%
+\section{Parsing a CSV File}\label{parsing-a-csv-file}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+
+\PreprocessorTok{\#define ANSI\_COLOR\_PRIMARY   "\textbackslash{}x1b[32m"}
+
+\DataTypeTok{void}\NormalTok{ print\_color(}\DataTypeTok{char}\NormalTok{* message, }\DataTypeTok{char}\NormalTok{* color) \{}
+\NormalTok{    printf(}\StringTok{"\%s"}\NormalTok{, color);}
+\NormalTok{    printf(}\StringTok{"\%s"}\NormalTok{, message);}
+\NormalTok{    printf(}\StringTok{"\%s"}\NormalTok{, }\StringTok{"}\SpecialCharTok{\textbackslash{}x1b}\StringTok{[0m"}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{void}\NormalTok{) \{}
+    \DataTypeTok{int}\NormalTok{ c;}
+
+    \DataTypeTok{FILE}\NormalTok{ *file;}
+
+\NormalTok{    file = fopen(}\StringTok{"/home/fdrennan/Programming/C/modernc/mtcars.csv"}\NormalTok{, }\StringTok{"r"}\NormalTok{);}
+
+    \DataTypeTok{int}\NormalTok{ n\_lines = }\DecValTok{0}\NormalTok{;}
+    \DataTypeTok{int}\NormalTok{ n\_columns = }\DecValTok{0}\NormalTok{;}
+
+    \ControlFlowTok{if}\NormalTok{ (file) \{}
+        \ControlFlowTok{while}\NormalTok{ ((c = getc(file)) != EOF)}
+\NormalTok{        \{}
+            \ControlFlowTok{if}\NormalTok{ (c == }\CharTok{\textquotesingle{}\textbackslash{}n\textquotesingle{}}\NormalTok{)}
+\NormalTok{                ++n\_lines;}
+            \ControlFlowTok{if}\NormalTok{ ((n\_lines \textless{} }\DecValTok{1}\NormalTok{) \& (c == }\CharTok{\textquotesingle{},\textquotesingle{}}\NormalTok{))}
+\NormalTok{                ++n\_columns;}
+            \ControlFlowTok{if}\NormalTok{ (n\_lines \textless{} }\DecValTok{5}\NormalTok{) \{}
+\NormalTok{                putc(c, stdout);}
+                \ControlFlowTok{if}\NormalTok{(c == }\CharTok{\textquotesingle{},\textquotesingle{}}\NormalTok{)}
+\NormalTok{                    printf(}\StringTok{" "}\NormalTok{);}
+\NormalTok{            \}}
+\NormalTok{        \}}
+\NormalTok{        fclose(file);}
+\NormalTok{    \}}
+
+\NormalTok{    print\_color(}\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Number of lines: "}\NormalTok{, ANSI\_COLOR\_PRIMARY);}
+\NormalTok{    printf(}\StringTok{"\%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, n\_lines {-} }\DecValTok{1}\NormalTok{);}
+
+\NormalTok{    print\_color(}\StringTok{"Number of columns: "}\NormalTok{, ANSI\_COLOR\_PRIMARY);}
+\NormalTok{    printf(}\StringTok{"\%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, n\_columns);}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gcc -std=gnu99 -I"/usr/share/R/include" -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c6f3f8561e1bd3.c -o c6f3f8561e1bd3.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c6f3f8561e1bd3.so c6f3f8561e1bd3.o -L/usr/lib/R/lib -lR
+\end{verbatim}
+
+\hypertarget{c-1}{%
+\chapter{C++}\label{c-1}}
 
 Here is a review of existing methods.
 
@@ -227,22 +447,6 @@ fn main ()
   println!("Yo, this is cool.");
 }
 \end{verbatim}
-
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
-
-Some \emph{significant} applications are demonstrated in this chapter.
-
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
-
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
-
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
-
-We have finished a nice book.
 
   \bibliography{book.bib,packages.bib}
 

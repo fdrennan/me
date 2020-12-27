@@ -1,0 +1,207 @@
+# C {#c}
+
+
+## Basic Calculator
+```{c}
+#include <stdio.h>
+
+int main() {
+    /*print Fahrenheit-Celsius table for f=0, 20, ..., 300*/
+    int lower, upper, step;
+    float fahr, celsius;
+
+    lower = 0;
+    upper = 300;
+    step = 20;
+
+    fahr = lower;
+    while (fahr <= upper) {
+        celsius = (5.0/9.0) * (fahr-32.0);
+        printf("%4.0f %6.1f\n", fahr, celsius);
+        fahr = fahr + step;
+    }
+}
+
+```
+
+## Receiving Input
+
++ `printf`: Print to console
++ `getchar`: Get a string input from the console
++ `putchar`: Print a single character to the screen. 
+
+The program below will stop and print 'Enter something...` and then received a string from the user. The while loop iterates over each letter in the input.
+
+```{c}
+#include <stdio.h>
+
+int main()
+{
+    int c;
+
+    printf("Enter something, or ctrl-D to quit.\n");
+    c = getchar();
+    while (c != EOF) {
+        printf("\n");
+        putchar(c);
+        c = getchar();
+    }
+}
+```
+
+Simpler version of the above, showing that we can use assignment within a loop.
+
+```{c}
+#include <stdio.h>
+
+int main()
+{
+    int c;
+    
+    while ((c = getchar()) != EOF) 
+        putchar(c);
+}
+```
+
+```
+
+## For Loop
+```{c}
+#include <stdio.h>
+
+int main()
+{
+    int fahr;
+
+    for (fahr = 0; fahr <= 300; fahr = fahr + 20)
+        printf("%3d %6.1f\n", fahr, (5.0/9.0)*(fahr-32));
+}
+```
+
+## DEFINE
+```{c}
+#include <stdio.h>
+
+#define LOWER 0
+#define UPPER 300
+#define STEP 20
+
+int main()
+{
+    int fahr;
+
+    for (fahr = LOWER; fahr <= UPPER; fahr = fahr + STEP)
+        printf("%3d %6.1f\n", fahr, (5.0/9.0)*(fahr-32));
+}
+```
+
+## Precedence of Operators
+
+`c = getchar() != EOF` is equal to `c = (getchar() != EOF)`
+
+## Charcter Count
+```{c}
+#include <stdio.h>
+
+int main()
+{
+    long nc = 0;
+    while (getchar() != EOF)
+    {
+        nc = nc + 1;
+        printf("There are %ld characters\n", nc);
+    }
+}
+```
+
+## Line Counting
+
+```{c}
+#include <stdio.h>
+
+int main()
+{
+    int c, n1;
+
+    n1 = 0;
+    while((c = getchar()) != EOF)
+    {
+        if (c == '\n')
+        {
+            printf("%d\n", n1);
+            ++n1;
+        }
+    }
+}
+```
+
+## Modern C Example
+
+```{c}
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(void) {
+    double A[5] = {
+            [0] = 9.0,
+            [1] = 2.9,
+            [4] = 3.E+25,
+            [3] = 0.00007
+    };
+
+    for (size_t i = 0; i < 5; ++i) {
+        printf("element %zu is %g, \tits square is %g\n",
+               i,
+               A[i],
+               A[i]*A[i]);
+    }
+
+    return EXIT_SUCCESS;
+}
+```
+
+## Parsing a CSV File
+```{c}
+#include <stdio.h>
+
+#define ANSI_COLOR_PRIMARY "\x1b[32m"
+
+void print_color(char * message, char * color) {
+  printf("%s", color);
+  printf("%s", message);
+  printf("%s", "\x1b[0m");
+}
+
+int main(void) {
+  int c;
+
+  FILE * file;
+
+  file = fopen("/home/fdrennan/Programming/C/modernc/mtcars.csv", "r");
+
+  int n_lines = 0;
+  int n_columns = 0;
+
+  if (file) {
+    while ((c = getc(file)) != EOF) {
+      if (c == '\n')
+        ++n_lines;
+      if ((n_lines < 1) & (c == ','))
+        ++n_columns;
+      if (n_lines < 5) {
+        putc(c, stdout);
+        if (c == ',')
+          printf(" ");
+      }
+    }
+    fclose(file);
+  }
+
+  print_color("\n\nNumber of lines: ", ANSI_COLOR_PRIMARY);
+  printf("%d\n", n_lines - 1);
+
+  print_color("Number of columns: ", ANSI_COLOR_PRIMARY);
+  printf("%d\n", n_columns);
+
+}
+```

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 C | ndexr</title>
+  <meta name="description" content="My Notepad" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 C | ndexr" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="My Notepad" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 C | ndexr" />
+  
+  <meta name="twitter:description" content="My Notepad" />
+  
+
+<meta name="author" content="Freddy R. Drennan" />
+
+
+<meta name="date" content="2020-12-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="c-1.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About Me</a></li>
+<li class="chapter" data-level="2" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i><b>2</b> C</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="c.html"><a href="c.html#basic-calculator"><i class="fa fa-check"></i><b>2.1</b> Basic Calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="c.html"><a href="c.html#receiving-input"><i class="fa fa-check"></i><b>2.2</b> Receiving Input</a></li>
+<li class="chapter" data-level="2.3" data-path="c.html"><a href="c.html#define"><i class="fa fa-check"></i><b>2.3</b> DEFINE</a></li>
+<li class="chapter" data-level="2.4" data-path="c.html"><a href="c.html#precedence-of-operators"><i class="fa fa-check"></i><b>2.4</b> Precedence of Operators</a></li>
+<li class="chapter" data-level="2.5" data-path="c.html"><a href="c.html#charcter-count"><i class="fa fa-check"></i><b>2.5</b> Charcter Count</a></li>
+<li class="chapter" data-level="2.6" data-path="c.html"><a href="c.html#line-counting"><i class="fa fa-check"></i><b>2.6</b> Line Counting</a></li>
+<li class="chapter" data-level="2.7" data-path="c.html"><a href="c.html#modern-c-example"><i class="fa fa-check"></i><b>2.7</b> Modern C Example</a></li>
+<li class="chapter" data-level="2.8" data-path="c.html"><a href="c.html#parsing-a-csv-file"><i class="fa fa-check"></i><b>2.8</b> Parsing a CSV File</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="c-1.html"><a href="c-1.html"><i class="fa fa-check"></i><b>3</b> C++</a></li>
+<li class="chapter" data-level="4" data-path="rust.html"><a href="rust.html"><i class="fa fa-check"></i><b>4</b> Rust</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ndexr</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> C</h1>
+<div id="basic-calculator" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Basic Calculator</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="c.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-2"><a href="c.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="c.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main() {</span>
+<span id="cb3-4"><a href="c.html#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*print Fahrenheit-Celsius table for f=0, 20, ..., 300*/</span></span>
+<span id="cb3-5"><a href="c.html#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> lower, upper, step;</span>
+<span id="cb3-6"><a href="c.html#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> fahr, celsius;</span>
+<span id="cb3-7"><a href="c.html#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="c.html#cb3-8" aria-hidden="true" tabindex="-1"></a>    lower = <span class="dv">0</span>;</span>
+<span id="cb3-9"><a href="c.html#cb3-9" aria-hidden="true" tabindex="-1"></a>    upper = <span class="dv">300</span>;</span>
+<span id="cb3-10"><a href="c.html#cb3-10" aria-hidden="true" tabindex="-1"></a>    step = <span class="dv">20</span>;</span>
+<span id="cb3-11"><a href="c.html#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="c.html#cb3-12" aria-hidden="true" tabindex="-1"></a>    fahr = lower;</span>
+<span id="cb3-13"><a href="c.html#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (fahr &lt;= upper) {</span>
+<span id="cb3-14"><a href="c.html#cb3-14" aria-hidden="true" tabindex="-1"></a>        celsius = (<span class="fl">5.0</span>/<span class="fl">9.0</span>) * (fahr-<span class="fl">32.0</span>);</span>
+<span id="cb3-15"><a href="c.html#cb3-15" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;%4.0f %6.1f</span><span class="sc">\n</span><span class="st">&quot;</span>, fahr, celsius);</span>
+<span id="cb3-16"><a href="c.html#cb3-16" aria-hidden="true" tabindex="-1"></a>        fahr = fahr + step;</span>
+<span id="cb3-17"><a href="c.html#cb3-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-18"><a href="c.html#cb3-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c1815905b2b.c -o c71c1815905b2b.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c1815905b2b.so c71c1815905b2b.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="receiving-input" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Receiving Input</h2>
+<ul>
+<li><code>printf</code>: Print to console</li>
+<li><code>getchar</code>: Get a string input from the console</li>
+<li><code>putchar</code>: Print a single character to the screen.</li>
+</ul>
+<p>The program below will stop and print ’Enter something…` and then received a string from the user. The while loop iterates over each letter in the input.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="c.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb5-2"><a href="c.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="c.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main()</span>
+<span id="cb5-4"><a href="c.html#cb5-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-5"><a href="c.html#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c;</span>
+<span id="cb5-6"><a href="c.html#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="c.html#cb5-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Enter something, or ctrl-D to quit.</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb5-8"><a href="c.html#cb5-8" aria-hidden="true" tabindex="-1"></a>    c = getchar();</span>
+<span id="cb5-9"><a href="c.html#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (c != EOF) {</span>
+<span id="cb5-10"><a href="c.html#cb5-10" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb5-11"><a href="c.html#cb5-11" aria-hidden="true" tabindex="-1"></a>        putchar(c);</span>
+<span id="cb5-12"><a href="c.html#cb5-12" aria-hidden="true" tabindex="-1"></a>        c = getchar();</span>
+<span id="cb5-13"><a href="c.html#cb5-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-14"><a href="c.html#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c185bcaac1e.c -o c71c185bcaac1e.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c185bcaac1e.so c71c185bcaac1e.o -L/usr/lib/R/lib -lR</code></pre>
+<p>Simpler version of the above, showing that we can use assignment within a loop.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="c.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"><a href="c.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="c.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main()</span>
+<span id="cb7-4"><a href="c.html#cb7-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-5"><a href="c.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c;</span>
+<span id="cb7-6"><a href="c.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-7"><a href="c.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> ((c = getchar()) != EOF) </span>
+<span id="cb7-8"><a href="c.html#cb7-8" aria-hidden="true" tabindex="-1"></a>        putchar(c);</span>
+<span id="cb7-9"><a href="c.html#cb7-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c1861af88fb.c -o c71c1861af88fb.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c1861af88fb.so c71c1861af88fb.o -L/usr/lib/R/lib -lR</code></pre>
+<pre><code>
+## For Loop
+
+```c
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fahr;
+
+    for (fahr = 0; fahr &lt;= 300; fahr = fahr + 20)
+        printf(&quot;%3d %6.1f\n&quot;, fahr, (5.0/9.0)*(fahr-32));
+}</code></pre>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c18749cfc12.c -o c71c18749cfc12.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c18749cfc12.so c71c18749cfc12.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="define" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> DEFINE</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="c.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb11-2"><a href="c.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="c.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LOWER 0</span></span>
+<span id="cb11-4"><a href="c.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define UPPER 300</span></span>
+<span id="cb11-5"><a href="c.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STEP 20</span></span>
+<span id="cb11-6"><a href="c.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="c.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main()</span>
+<span id="cb11-8"><a href="c.html#cb11-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb11-9"><a href="c.html#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> fahr;</span>
+<span id="cb11-10"><a href="c.html#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="c.html#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (fahr = LOWER; fahr &lt;= UPPER; fahr = fahr + STEP)</span>
+<span id="cb11-12"><a href="c.html#cb11-12" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;%3d %6.1f</span><span class="sc">\n</span><span class="st">&quot;</span>, fahr, (<span class="fl">5.0</span>/<span class="fl">9.0</span>)*(fahr-<span class="dv">32</span>));</span>
+<span id="cb11-13"><a href="c.html#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c18238fb250.c -o c71c18238fb250.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c18238fb250.so c71c18238fb250.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="precedence-of-operators" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Precedence of Operators</h2>
+<p><code>c = getchar() != EOF</code> is equal to <code>c = (getchar() != EOF)</code></p>
+</div>
+<div id="charcter-count" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Charcter Count</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="c.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb13-2"><a href="c.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="c.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main()</span>
+<span id="cb13-4"><a href="c.html#cb13-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb13-5"><a href="c.html#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> nc = <span class="dv">0</span>;</span>
+<span id="cb13-6"><a href="c.html#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (getchar() != EOF)</span>
+<span id="cb13-7"><a href="c.html#cb13-7" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb13-8"><a href="c.html#cb13-8" aria-hidden="true" tabindex="-1"></a>        nc = nc + <span class="dv">1</span>;</span>
+<span id="cb13-9"><a href="c.html#cb13-9" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;There are %ld characters</span><span class="sc">\n</span><span class="st">&quot;</span>, nc);</span>
+<span id="cb13-10"><a href="c.html#cb13-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-11"><a href="c.html#cb13-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c1857d179fd.c -o c71c1857d179fd.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c1857d179fd.so c71c1857d179fd.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="line-counting" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Line Counting</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="c.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb15-2"><a href="c.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="c.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main()</span>
+<span id="cb15-4"><a href="c.html#cb15-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb15-5"><a href="c.html#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c, n1;</span>
+<span id="cb15-6"><a href="c.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="c.html#cb15-7" aria-hidden="true" tabindex="-1"></a>    n1 = <span class="dv">0</span>;</span>
+<span id="cb15-8"><a href="c.html#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>((c = getchar()) != EOF)</span>
+<span id="cb15-9"><a href="c.html#cb15-9" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb15-10"><a href="c.html#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (c == <span class="ch">&#39;\n&#39;</span>)</span>
+<span id="cb15-11"><a href="c.html#cb15-11" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb15-12"><a href="c.html#cb15-12" aria-hidden="true" tabindex="-1"></a>            printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, n1);</span>
+<span id="cb15-13"><a href="c.html#cb15-13" aria-hidden="true" tabindex="-1"></a>            ++n1;</span>
+<span id="cb15-14"><a href="c.html#cb15-14" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb15-15"><a href="c.html#cb15-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-16"><a href="c.html#cb15-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c181d1364c9.c -o c71c181d1364c9.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c181d1364c9.so c71c181d1364c9.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="modern-c-example" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Modern C Example</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="c.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb17-2"><a href="c.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb17-3"><a href="c.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="c.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>) {</span>
+<span id="cb17-5"><a href="c.html#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> A[<span class="dv">5</span>] = {</span>
+<span id="cb17-6"><a href="c.html#cb17-6" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">0</span>] = <span class="fl">9.0</span>,</span>
+<span id="cb17-7"><a href="c.html#cb17-7" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">1</span>] = <span class="fl">2.9</span>,</span>
+<span id="cb17-8"><a href="c.html#cb17-8" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">4</span>] = <span class="fl">3.E+25</span>,</span>
+<span id="cb17-9"><a href="c.html#cb17-9" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">3</span>] = <span class="fl">0.00007</span></span>
+<span id="cb17-10"><a href="c.html#cb17-10" aria-hidden="true" tabindex="-1"></a>    };</span>
+<span id="cb17-11"><a href="c.html#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="c.html#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">0</span>; i &lt; <span class="dv">5</span>; ++i) {</span>
+<span id="cb17-13"><a href="c.html#cb17-13" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;element %zu is %g, </span><span class="sc">\t</span><span class="st">its square is %g</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb17-14"><a href="c.html#cb17-14" aria-hidden="true" tabindex="-1"></a>               i,</span>
+<span id="cb17-15"><a href="c.html#cb17-15" aria-hidden="true" tabindex="-1"></a>               A[i],</span>
+<span id="cb17-16"><a href="c.html#cb17-16" aria-hidden="true" tabindex="-1"></a>               A[i]*A[i]);</span>
+<span id="cb17-17"><a href="c.html#cb17-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-18"><a href="c.html#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="c.html#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXIT_SUCCESS;</span>
+<span id="cb17-20"><a href="c.html#cb17-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c1875e08844.c -o c71c1875e08844.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c1875e08844.so c71c1875e08844.o -L/usr/lib/R/lib -lR</code></pre>
+</div>
+<div id="parsing-a-csv-file" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Parsing a CSV File</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="c.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb19-2"><a href="c.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="c.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANSI_COLOR_PRIMARY &quot;\x1b[32m&quot;</span></span>
+<span id="cb19-4"><a href="c.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="c.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_color(<span class="dt">char</span> * message, <span class="dt">char</span> * color) {</span>
+<span id="cb19-6"><a href="c.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  printf(<span class="st">&quot;%s&quot;</span>, color);</span>
+<span id="cb19-7"><a href="c.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  printf(<span class="st">&quot;%s&quot;</span>, message);</span>
+<span id="cb19-8"><a href="c.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  printf(<span class="st">&quot;%s&quot;</span>, <span class="st">&quot;</span><span class="sc">\x1b</span><span class="st">[0m&quot;</span>);</span>
+<span id="cb19-9"><a href="c.html#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-10"><a href="c.html#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="c.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>) {</span>
+<span id="cb19-12"><a href="c.html#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> c;</span>
+<span id="cb19-13"><a href="c.html#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="c.html#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">FILE</span> * file;</span>
+<span id="cb19-15"><a href="c.html#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="c.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  file = fopen(<span class="st">&quot;/home/fdrennan/Programming/C/modernc/mtcars.csv&quot;</span>, <span class="st">&quot;r&quot;</span>);</span>
+<span id="cb19-17"><a href="c.html#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="c.html#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n_lines = <span class="dv">0</span>;</span>
+<span id="cb19-19"><a href="c.html#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n_columns = <span class="dv">0</span>;</span>
+<span id="cb19-20"><a href="c.html#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="c.html#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (file) {</span>
+<span id="cb19-22"><a href="c.html#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> ((c = getc(file)) != EOF) {</span>
+<span id="cb19-23"><a href="c.html#cb19-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (c == <span class="ch">&#39;\n&#39;</span>)</span>
+<span id="cb19-24"><a href="c.html#cb19-24" aria-hidden="true" tabindex="-1"></a>        ++n_lines;</span>
+<span id="cb19-25"><a href="c.html#cb19-25" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> ((n_lines &lt; <span class="dv">1</span>) &amp; (c == <span class="ch">&#39;,&#39;</span>))</span>
+<span id="cb19-26"><a href="c.html#cb19-26" aria-hidden="true" tabindex="-1"></a>        ++n_columns;</span>
+<span id="cb19-27"><a href="c.html#cb19-27" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (n_lines &lt; <span class="dv">5</span>) {</span>
+<span id="cb19-28"><a href="c.html#cb19-28" aria-hidden="true" tabindex="-1"></a>        putc(c, stdout);</span>
+<span id="cb19-29"><a href="c.html#cb19-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (c == <span class="ch">&#39;,&#39;</span>)</span>
+<span id="cb19-30"><a href="c.html#cb19-30" aria-hidden="true" tabindex="-1"></a>          printf(<span class="st">&quot; &quot;</span>);</span>
+<span id="cb19-31"><a href="c.html#cb19-31" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb19-32"><a href="c.html#cb19-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-33"><a href="c.html#cb19-33" aria-hidden="true" tabindex="-1"></a>    fclose(file);</span>
+<span id="cb19-34"><a href="c.html#cb19-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-35"><a href="c.html#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="c.html#cb19-36" aria-hidden="true" tabindex="-1"></a>  print_color(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">Number of lines: &quot;</span>, ANSI_COLOR_PRIMARY);</span>
+<span id="cb19-37"><a href="c.html#cb19-37" aria-hidden="true" tabindex="-1"></a>  printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, n_lines - <span class="dv">1</span>);</span>
+<span id="cb19-38"><a href="c.html#cb19-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-39"><a href="c.html#cb19-39" aria-hidden="true" tabindex="-1"></a>  print_color(<span class="st">&quot;Number of columns: &quot;</span>, ANSI_COLOR_PRIMARY);</span>
+<span id="cb19-40"><a href="c.html#cb19-40" aria-hidden="true" tabindex="-1"></a>  printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, n_columns);</span>
+<span id="cb19-41"><a href="c.html#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="c.html#cb19-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-8T8CYO/r-base-4.0.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c c71c18387c1464.c -o c71c18387c1464.o
+## gcc -std=gnu99 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o c71c18387c1464.so c71c18387c1464.o -L/usr/lib/R/lib -lR</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="c-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["me.pdf", "me.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

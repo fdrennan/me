@@ -1,19 +1,23 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "ndexr"
+author: "Freddy R. Drennan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "My Notepad"
 ---
 
-# Prerequisites
+# About Me
 
-You probably know me from somewhere. 
+You probably know me from somewhere. My name is Freddy Drennan and I have been in and out of data related projects for the past five years. I initially fell in love with the `R` programming language and best practices in programming development - unit testing, well documented code, quality over quantity type stuff. 
+
+I have wanted to break out of my programming rut for a while. Having devoured R, I want a bigger challenge. I'll be blogging about C, C++, and Rust in the coming weeks - taking notes about what I have learned as well and track my own growth.
+
+Thanks for checking this out!
 
 ```{r}
-print('Hey, yalls.')
+print('Hey, yalls, thanks again!')
 ```
